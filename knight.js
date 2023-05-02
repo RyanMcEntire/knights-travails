@@ -25,55 +25,34 @@ class Knight {
     this.path = [];
   }
 
-  // top 3 moves are calculated as difference between the square to move to, and
-  findAllMoves(currentPosition) {
+  // moves are calculated as difference between the square to move to, and destination.
+  getAllMoves(currentPosition) {
     const moveArray = [];
     this.moves.forEach((move) => {
       const x = move[0] + currentPosition[0];
       const y = move[1] + currentPosition[1];
-      if (x == this.startingSquare[0] && y == this.startingSquare[1]) return
-      if (x < 0 || x > 7 || y < 0 || y > 7) return
+      if (x == this.startingSquare[0] && y == this.startingSquare[1]) return;
+      if (x < 0 || x > 7 || y < 0 || y > 7) return;
       moveArray.push([x, y]);
     });
     return moveArray;
   }
 
-  findBestMoves(moveArray) {
-    const nextPositions = []
-    
-  }
+  // sorts moves based on distance from destination
+  sortMoveCoordinates(moves, destination) {
+    const distance = (x, y) => Math.sqrt(x * x + y * y);
+    // finds the difference between a move and the destination
+    const compare = (a, b) => {
+      const diffA = [a[0] - destination[0], a[1] - destination[1]];
+      const diffA = [b[0] - destination[0], b[1] - destination[1]];
+      // calls distance() to compare how close each is
+      const distanceA = distance(diffA[0], diffA[1])
+      const distanceB = distance(diffB[0], diffB[1])
 
-  levelOrder(func) {
-    let q = [this.root];
-    let noFunc = [];
-    while (q.length > 0) {
-      const currentNode = q.shift();
-      if (func && typeof func == 'function') {
-        currentNode.data = func(currentNode.data);
-      } else {
-        noFunc.push(currentNode.data);
-      }
-      if (currentNode.left) {
-        q.push(currentNode.left);
-      }
-      if (currentNode.right) {
-        q.push(currentNode.right);
-      }
+      return distanceA - distanceB;
     }
-    if (noFunc.length > 0) return noFunc;
-  }
-
-  inOrder(func, currentNode = this.root, noFuncList = []) {
-    if (!currentNode) return;
-    this.inOrder(func, currentNode.left, noFuncList);
-    if (func && typeof func == 'function') {
-      currentNode.data = func(currentNode.data);
-    } else {
-      noFuncList.push(currentNode.data);
-    }
-    this.inOrder(func, currentNode.right, noFuncList);
-
-    if (noFuncList.length > 0) return noFuncList;
+    // sorts moves from lowest to highest distance from destination
+    moves.sort(compare)
   }
 }
 

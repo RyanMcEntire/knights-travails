@@ -15,22 +15,15 @@ const chessBoard = createBoard();
 
 console.log(chessBoard);
 
-
 function knightMoves(start, end, count) {
-  if (!start) return
-   
+  if (!start) return;
 }
 
-// axis will be [x, y]
-// cant move off board
+const ourKnight = new Knight([4, 4], [5, 4]);
 
-const moves = [
-  [1, 2],
-  [2, 1],
-  [2, -1],
-  [1, -2],
-  [-1, -2],
-  [-2, -1],
-  [-2, 1],
-  [-1, 2],
-];
+const knightsMoves = ourKnight.getAllMoves(ourKnight.startingSquare);
+const bestMoves = ourKnight.sortMoveCoordinates(
+  knightsMoves,
+  ourKnight.destination
+);
+console.log(ourKnight, bestMoves);

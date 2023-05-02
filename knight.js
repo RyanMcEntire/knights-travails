@@ -1,17 +1,21 @@
 class Node {
-  constructor(square) {
+  constructor(square, move1, move2, move3) {
     this.square = square;
-    this.move1 = null;
-    this.move2 = null;
-    this.move3 = null;
+    this.move1 = move1;
+    this.move2 = move2;
+    this.move3 = move3;
     this.parent = null;
   }
 }
 
 class Knight {
   constructor(currentPosition, destination) {
+    const movesArray = this.getAllMoves(currentPosition);
+    const bestMoves = this.sortMoveCoordinates(movesArray);
+
     this.startingSquare = currentPosition;
     this.destination = destination;
+    this.root = null;
     this.moves = [
       [1, 2],
       [2, 1],
@@ -38,21 +42,28 @@ class Knight {
     return moveArray;
   }
 
-  // sorts moves based on distance from destination
+  // sorts moves based on distance from destination and keeps top 3
   sortMoveCoordinates(moves, destination) {
+    // overkill formula for checking distance on a 2D grid
     const distance = (x, y) => Math.sqrt(x * x + y * y);
     // finds the difference between a move and the destination
     const compare = (a, b) => {
       const diffA = [a[0] - destination[0], a[1] - destination[1]];
-      const diffA = [b[0] - destination[0], b[1] - destination[1]];
-      // calls distance() to compare how close each is
-      const distanceA = distance(diffA[0], diffA[1])
-      const distanceB = distance(diffB[0], diffB[1])
+      const diffB = [b[0] - destination[0], b[1] - destination[1]];
+
+      const distanceA = distance(diffA[0], diffA[1]);
+      const distanceB = distance(diffB[0], diffB[1]);
 
       return distanceA - distanceB;
-    }
+    };
     // sorts moves from lowest to highest distance from destination
-    moves.sort(compare)
+    moves.sort(compare);
+    let nextMoves = moves.splice(0, 3);
+    return nextMoves;
+  }
+
+  buildKnightTree(currentPosition, moves) {
+    
   }
 }
 

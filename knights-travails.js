@@ -80,6 +80,7 @@ function knightMoves(startingSquare, destinationSquare) {
   const shortestPath = ourKnight.findShortestPath();
   const x = ourKnight.startingSquare[0];
   const y = ourKnight.startingSquare[1];
+  console.log(`> knightMoves([${startingSquare}], [${destinationSquare}])`);
   if (x < 0 || x > 7 || y < 0 || y > 7) {
     return console.log(
       `You entered [${ourKnight.startingSquare}] for the starting position. Starting position coordinates must be between [0, 0] & [7, 7]`
@@ -90,7 +91,7 @@ function knightMoves(startingSquare, destinationSquare) {
     );
   } else {
     console.log(
-      ` => You made it in ${shortestPath.length - 1} moves! Here's your path:`
+      `=> You made it in ${shortestPath.length - 1} moves! Here's your path:`
     );
   }
   shortestPath.forEach((coordinate) => {
@@ -99,7 +100,8 @@ function knightMoves(startingSquare, destinationSquare) {
 }
 
 knightMoves([6, 7], [1, 2]);
-//  => You made it in 4 moves! Here's your path:
+// > knightMoves([6,7], [1,2])
+// => You made it in 4 moves! Here's your path:
 // [ 6, 7 ]
 // [ 7, 5 ]
 // [ 5, 4 ]
@@ -107,7 +109,9 @@ knightMoves([6, 7], [1, 2]);
 // [ 1, 2 ]
 
 knightMoves([6, 7], [1, -1]);
+// > knightMoves([6,7], [1,-1])
 // You entered [1,-1] as the destination. Destination coordinates must be between [0, 0] & [7, 7]
 
 knightMoves([6, -1], [1, 2]);
+// > knightMoves([6,-1], [1,2])
 // You entered [6,-1] for the starting position. Starting position coordinates must be between [0, 0] & [7, 7]

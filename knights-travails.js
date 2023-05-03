@@ -83,11 +83,11 @@ function knightMoves(startingSquare, destinationSquare) {
   console.log(`> knightMoves([${startingSquare}], [${destinationSquare}])`);
   if (x < 0 || x > 7 || y < 0 || y > 7) {
     return console.log(
-      `You entered [${ourKnight.startingSquare}] for the starting position. Starting position coordinates must be between [0, 0] & [7, 7]`
+      `You entered [${ourKnight.startingSquare}] for the starting position.\nStarting position coordinates must be between [0, 0] & [7, 7]`
     );
   } else if (shortestPath.length < 1) {
     console.log(
-      `You entered [${ourKnight.destination}] as the destination. Destination coordinates must be between [0, 0] & [7, 7]`
+      `You entered [${ourKnight.destination}] as the destination.\nDestination coordinates must be between [0, 0] & [7, 7]`
     );
   } else {
     console.log(
@@ -110,8 +110,10 @@ knightMoves([6, 7], [1, 2]);
 
 knightMoves([6, 7], [1, -1]);
 // > knightMoves([6,7], [1,-1])
-// You entered [1,-1] as the destination. Destination coordinates must be between [0, 0] & [7, 7]
+// You entered [1,-1] as the destination.
+// Destination coordinates must be between [0, 0] & [7, 7]
 
 knightMoves([6, -1], [1, 2]);
 // > knightMoves([6,-1], [1,2])
-// You entered [6,-1] for the starting position. Starting position coordinates must be between [0, 0] & [7, 7]
+// You entered [6,-1] for the starting position.
+// Starting position coordinates must be between [0, 0] & [7, 7]

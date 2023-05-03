@@ -76,7 +76,13 @@ class Knight {
 function knightMoves(startingSquare, destinationSquare) {
   const ourKnight = new Knight(startingSquare, destinationSquare);
   const shortestPath = ourKnight.findShortestPath();
-  return console.log('shortest path', shortestPath);
+
+  console.log(
+    ` => You made it in ${shortestPath.length - 1} moves! Here's your path:`
+  );
+  shortestPath.forEach((coordinate) => {
+    console.log(coordinate);
+  });
 }
 
 knightMoves([4, 4], [7, 6]);
